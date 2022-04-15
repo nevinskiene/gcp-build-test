@@ -1,8 +1,4 @@
 steps:
-- name: 'eu.gcr.io/cloud-builders/docker'
-  args: ['build', '--build-arg=cmd=./cmd/gcs-fetcher/', '-t', 'eu.gcr.io/$PROJECT_ID/gcs-fetcher', '.']
-- name: 'eu.gcr.io/$PROJECT_ID/gcs-fetcher'
-  args: ['--help']
 
 # Build the gcs-uploader binary and put it into the builder image.
 - name: 'eu.gcr.io/cloud-builders/docker'
@@ -16,5 +12,4 @@ steps:
 
 # Push the images.
 images:
-- 'eu.gcr.io/$PROJECT_ID/gcs-fetcher'
 - 'eu.gcr.io/$PROJECT_ID/gcs-uploader'
