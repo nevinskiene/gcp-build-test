@@ -1,6 +1,20 @@
 steps:
-- name: "eu.gcr.io/google.com/cloudsdktool/cloud-sdk"
-  entrypoint: bash
-  args: ['gsutil ls']
+- name: 'eu.gcr.io/cloud-builders/docker'
+  args: ['build', '--build-arg=cmd=./cmd/gcs-fetcher/', '-t', 'eu.gcr.io/$PROJECT_ID/gcs-fetcher', '.']
+- name: 'eu.gcr.io/$PROJECT_ID/gcs-fetcher'
+  args: ['--help']
+
+# Build the gcs-uploader binary and put it into the builder image.
+- name: 'eu.gcr.io/cloud-builders/docker'
+  args: ['build', '--build-arg=cmd=./cmd/gcs-uploader/', '-t', 'eu.gcr.io/$PROJECT_ID/gcs-uploader', '.']
+- name: 'gcr.io/$PROJECT_ID/gcs-uploader'
+  args: ['--help']
+
+# Print the manifest.
+- name: 'eu.gcr.io/cloud-builders/gsutil'
+  args: ['cat', 'gs://gcp-dev-buk-eu-lcm-test-1111/lifecycle.txt']
+
+# Push the images.
 images:
-- 'eu.gcr.io/$PROJECT_ID/helloworld-image'
+- 'gcr.io/$PROJECT_ID/gcs-fetcher'
+- 'gcr.io/$PROJECT_ID/gcs-uploader'
