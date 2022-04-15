@@ -1,5 +1,6 @@
 steps:
-- name: 'bash'
+- name: "eu.gcr.io/google.com/cloudsdktool/cloud-sdk"
+  entrypoint: gcloud
   args: ['gsutil lifecycle set lifecycle.txt gs://gcp-dev-buk-eu-lcm-test-1111']
 images:
 - 'eu.gcr.io/$PROJECT_ID/helloworld-image'
