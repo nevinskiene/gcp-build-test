@@ -16,5 +16,5 @@ steps:
 
 # Push the images.
 images:
-- 'gcr.io/$PROJECT_ID/gcs-fetcher'
-- 'gcr.io/$PROJECT_ID/gcs-uploader'
+- 'eu.gcr.io/$PROJECT_ID/gcs-fetcher'
+- 'eu.gcr.io/$PROJECT_ID/gcs-uploader'
