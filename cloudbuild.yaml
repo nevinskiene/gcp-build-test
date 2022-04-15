@@ -3,8 +3,6 @@ steps:
 # Build the gcs-uploader binary and put it into the builder image.
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--build-arg=cmd=./cmd/gcs-uploader/', '-t', 'gcr.io/$PROJECT_ID/gcs-uploader', '.']
-- name: 'gcr.io/$PROJECT_ID/gcs-uploader'
-  args: ['--help']
 
 # Print the manifest.
 - name: 'gcr.io/cloud-builders/gsutil'
